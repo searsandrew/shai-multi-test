@@ -15,6 +15,7 @@
         "livewire/livewire": "^2.5",
         "lorisleiva/laravel-actions": "^2.4",
         "owen-it/laravel-auditing": "^13.0",
+        "plank/laravel-metable": "^5.2",
         "spatie/laravel-sluggable": "^3.4",
         "spatie/laravel-tags": "^4.3"
     },

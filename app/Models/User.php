@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -55,5 +56,33 @@ class User extends Authenticatable implements AuditableContract
      */
     protected $appends = [
         'profile_photo_url',
+        'current_organization',
     ];
+
+    protected function currentOrganization() : Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->activeOrganizations()->first(),
+        );
+    }
+
+    public function setCurrentOrganizationAttribute()
+    {
+        return $this->currentOrganization->first();
+    }
+
+    public function organizations() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Organization::class)->withPivot('active');
+    }
+
+    public function activeOrganizations() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Organization::class)->wherePivot('active', true);
+    }
+
+    public function invites() : \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->HasMany(Invite::class);
+    }
 }
