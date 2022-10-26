@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 use App\Models\Campaign;
 
+use Auth;
+
 class Form extends Component
 {
     public Campaign $campaign;
