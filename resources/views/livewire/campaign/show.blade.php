@@ -26,7 +26,7 @@
                                 @endif
                             </span>
                         @else
-                            <span class="link mb-3" wire:click="$toggle('toggleUpload')">{{ __('Upload Recipients') }}</a>
+                            <span class="link mb-3" wire:click="$toggle('toggleUpload')">{{ __('Upload Recipients') }}</span>
 
                             @if($toggleUpload)
                                 <form class="mt-6" method="POST" enctype="multipart/form-data" action="{{ route('recipient.import') }}">
