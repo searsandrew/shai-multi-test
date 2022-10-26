@@ -44,8 +44,6 @@ class Form extends Component
 
         $this->campaign->save();
 
-        dd($this->campaign);
-
         $this->emitUp('campaignSaved');
     }
 
