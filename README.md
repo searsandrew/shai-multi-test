@@ -8,6 +8,7 @@
 * laravel/framework: ^9.19
 
 **Packages**
+* codedge/laravel-fpdf: ^1.9
 * dyrynda/laravel-model-uuid: ^6.6
 * guzzlehttp/guzzle: ^7.2
 * laravel/jetstream: ^2.12

@@ -16,24 +16,46 @@
                     {{ __('Change details regarding your campaign, or upload a list of recipients.') }}
                     {{ __('There are several types of campaigns available, and depending on the type of campaign you are running, you may have different options.') }}
                     <hr class="my-3" />
-                    @if($campaign->recipients->count() > 0)
-                        <a href="#">{{ __('View Recipients') }}</a>
-                    @else
-                        <span class="link" wire:click="$toggle('toggleUpload')">{{ __('Upload Recipients') }}</a>
+                    <div class="gap-3">
+                        @if($campaign->recipients->count() > 0)
+                            <span class="link mb-3" wire:click="$toggle('toggleRecipients')">
+                                @if($toggleRecipients)
+                                    {{ __('View Campaign Details') }}
+                                @else
+                                    {{ __('View Recipients') }}
+                                @endif
+                            </span>
+                        @else
+                            <span class="link mb-3" wire:click="$toggle('toggleUpload')">{{ __('Upload Recipients') }}</a>
 
-                        @if($toggleUpload)
-                            <form class="mt-6" method="POST" enctype="multipart/form-data" action="{{ route('recipient.import') }}">
-                                @csrf
-                                <input type="hidden" name="campaign" value="{{ $campaign->uuid }}" />
-                                <input type="file" name="file" />
-                                <button type="submit"  class="btn-muted text-center">Submit</button>
-                            </form>
+                            @if($toggleUpload)
+                                <form class="mt-6" method="POST" enctype="multipart/form-data" action="{{ route('recipient.import') }}">
+                                    @csrf
+                                    <input type="hidden" name="campaign" value="{{ $campaign->uuid }}" />
+                                    <input type="file" name="file" />
+                                    <button type="submit"  class="btn-muted text-center">Submit</button>
+                                </form>
+                            @endif
                         @endif
-                    @endif
+                        <a class="link mb-3" href="{{ route('campaign.label', $campaign) }}">Download Labels</a>
+                    </div>
                 </x-slot>
 
                 <x-slot name="form">
-                    <livewire:campaign.form :campaign="$campaign" />
+                    @if($toggleRecipients)
+                        <div class="col-span-6 divide-y">
+                            @foreach($campaign->recipients as $recipient)
+                                <div class="flex flex-cols items-center">
+                                    <span class="w-1/6">{{ $recipient->ref_id }}</span>
+                                    <span class="w-1/3">{{ $recipient->name }}</span>
+                                    <span class="w-1/3">{{ $recipient->internal_ref_slug }}</span>
+                                    <span class="w-1/6">{{ $recipient->family }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <livewire:campaign.form :campaign="$campaign" />
+                    @endif
                 </x-slot>
                 <x-slot name="actions">
                     <x-jet-action-message class="mr-3" on="campaignSaved">
