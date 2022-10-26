@@ -13,8 +13,8 @@
                 </x-slot>
 
                 <x-slot name="description">
-                    <p>{{ __('Campaigns are your high-level organization of donations by season/event. Campaigns require their own branding in addition to a summary, start and end dates, and messages sent to donors.') }}</p>
-                    <small>{{ __('There are several types of campaigns available, and depending on the type of campaign you are running, you will need to provide different donation specific information.') }}</small>
+                    {{ __('Campaigns are your high-level organization of donations by season/event. Campaigns require their own branding in addition to a summary, start and end dates, and messages sent to donors.') }}<br/>
+                    {{ __('There are several types of campaigns available, and depending on the type of campaign you are running, you will need to provide different donation specific information.') }}
                 </x-slot>
 
                 <x-slot name="form">

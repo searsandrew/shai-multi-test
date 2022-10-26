@@ -13,10 +13,23 @@
                 </x-slot>
 
                 <x-slot name="description">
-                    <p>{{ __('Change details regarding your campaign, or upload a list of recipients.') }}</p>
-                    <small>{{ __('There are several types of campaigns available, and depending on the type of campaign you are running, you may have different options.') }}</small>
+                    {{ __('Change details regarding your campaign, or upload a list of recipients.') }}
+                    {{ __('There are several types of campaigns available, and depending on the type of campaign you are running, you may have different options.') }}
                     <hr class="my-3" />
-                    <a href="#">{{ __('View Recipients') }}</a>
+                    @if($campaign->recipients->count() > 0)
+                        <a href="#">{{ __('View Recipients') }}</a>
+                    @else
+                        <span class="link" wire:click="$toggle('toggleUpload')">{{ __('Upload Recipients') }}</a>
+
+                        @if($toggleUpload)
+                            <form class="mt-6" method="POST" enctype="multipart/form-data" action="{{ route('recipient.import') }}">
+                                @csrf
+                                <input type="hidden" name="campaign" value="{{ $campaign->uuid }}" />
+                                <input type="file" name="file" />
+                                <button type="submit"  class="btn-muted text-center">Submit</button>
+                            </form>
+                        @endif
+                    @endif
                 </x-slot>
 
                 <x-slot name="form">

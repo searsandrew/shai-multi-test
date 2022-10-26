@@ -9,6 +9,7 @@ use App\Models\Campaign;
 class Show extends Component
 {
     public Campaign $campaign;
+    public bool $toggleUpload = false;
 
     public function render()
     {

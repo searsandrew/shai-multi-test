@@ -54,5 +54,10 @@ class Campaign extends Model implements AuditableContract
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function recipients() : \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Recipient::class);
+    }
 }
 
