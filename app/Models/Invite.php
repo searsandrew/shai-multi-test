@@ -12,7 +12,7 @@ use OwenIt\Auditing\Auditable;
 
 use Auth;
 
-class Invite extends Model
+class Invite extends Model implements AuditableContract
 {
     use Auditable, GeneratesUuid, HasFactory, SoftDeletes;
 

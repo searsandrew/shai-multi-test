@@ -48,6 +48,11 @@ class Organization extends Model implements AuditableContract
         return $this->morphOne(Address::class, 'addressable');
     }
 
+    public function campaigns() : \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Campaign::class);
+    }
+
     public function users() : \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class);
