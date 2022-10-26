@@ -25,17 +25,16 @@
                                     {{ __('View Recipients') }}
                                 @endif
                             </span>
-                        @else
-                            <span class="link mb-3" wire:click="$toggle('toggleUpload')">{{ __('Upload Recipients') }}</span>
+                        @endif
+                        <span class="link mb-3" wire:click="$toggle('toggleUpload')">{{ __('Upload Recipients') }}</span>
 
-                            @if($toggleUpload)
-                                <form class="mt-6" method="POST" enctype="multipart/form-data" action="{{ route('recipient.import') }}">
-                                    @csrf
-                                    <input type="hidden" name="campaign" value="{{ $campaign->uuid }}" />
-                                    <input type="file" name="file" />
-                                    <button type="submit"  class="btn-muted text-center">Submit</button>
-                                </form>
-                            @endif
+                        @if($toggleUpload)
+                            <form class="mt-6" method="POST" enctype="multipart/form-data" action="{{ route('recipient.import') }}">
+                                @csrf
+                                <input type="hidden" name="campaign" value="{{ $campaign->uuid }}" />
+                                <input type="file" name="file" />
+                                <button type="submit"  class="btn-muted text-center">Submit</button>
+                            </form>
                         @endif
                         <a class="link mb-3" href="{{ route('campaign.label', $campaign) }}">Download Labels</a>
                     </div>

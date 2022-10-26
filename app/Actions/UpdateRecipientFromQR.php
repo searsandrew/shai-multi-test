@@ -11,11 +11,11 @@ class UpdateRecipientFromQR
 
     public function handle()
     {
-        // ...
+        return 'Selectin handler disabled until campaign start.';
     }
 
-    public static function routes(Router $router)
+    public function asController()
     {
-        $router->get('/recipient/{recipient}/qr', static::class)->name('recipient.qr');
+
     }
 }
