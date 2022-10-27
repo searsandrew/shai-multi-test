@@ -8,10 +8,12 @@ use App\Http\Livewire\Campaign\Show as CampaignShow;
 use App\Http\Livewire\OrganizationSetup;
 use App\Http\Livewire\Organization\Show as OrganizationShow;
 use App\Http\Livewire\Recipient\Import as RecipientImport;
+use App\Http\Livewire\DonorBrowse;
 use Lorisleiva\Actions\Facades\Actions;
 
 use App\Actions\PrintLabels;
 use App\Actions\UpdateRecipientFromQR;
+use App\Actions\SignUpDonor;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,10 @@ Route::get('/', function () {
 });
 
 Route::get('/organization', OrganizationSetup::class)->middleware('auth')->name('organization.setup');
-Route::get('/recipient/{recipient}/qr', UpdateRecipientFromQR::class)->name('recipient.qr');
+Route::get('/recipient/{recipient}/qr', UpdateRecipientFromQR::class)->middleware('signup')->name('recipient.qr');
+Route::get('/{organizationSlug}/{campaignSlug}', DonorBrowse::class)->name('donor.browse');
+Route::post('/signup', SignUpDonor::class)->middleware('signup')->name('donor.signup');
+Route::view('/signup', 'components.signup')->name('donor.signup.form');
 
 Route::middleware([
     'auth:sanctum',

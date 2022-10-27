@@ -59,5 +59,10 @@ class Campaign extends Model implements AuditableContract
     {
         return $this->hasMany(Recipient::class);
     }
+
+    public function donations() : \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(Donation::class, Recipient::class);
+    }
 }
 

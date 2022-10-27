@@ -23,4 +23,9 @@ class Recipient extends Model implements AuditableContract
     {
         return $this->belongsTo(Campaign::class);
     }
+
+    public function donation() : \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Donation::class);
+    }
 }
