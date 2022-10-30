@@ -4,6 +4,7 @@ namespace App\Actions;
 
 use Lorisleiva\Actions\Concerns\AsAction;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Mail;
 
 use App\Mail\InviteMail;
 use App\Models\Invite;

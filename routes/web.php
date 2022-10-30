@@ -11,9 +11,12 @@ use App\Http\Livewire\Recipient\Import as RecipientImport;
 use App\Http\Livewire\DonorBrowse;
 use Lorisleiva\Actions\Facades\Actions;
 
+use App\Actions\ConfirmSelections;
 use App\Actions\PrintLabels;
 use App\Actions\UpdateRecipientFromQR;
 use App\Actions\SignUpDonor;
+
+use App\Actions\Invokable\SendSelectedEmail;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +33,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/gomail', SendSelectedEmail::class);
+
 Route::get('/organization', OrganizationSetup::class)->middleware('auth')->name('organization.setup');
 Route::get('/recipient/{recipient}/qr', UpdateRecipientFromQR::class)->middleware('signup')->name('recipient.qr');
 Route::get('/{organizationSlug}/{campaignSlug}', DonorBrowse::class)->name('donor.browse');
-Route::post('/signup', SignUpDonor::class)->middleware('signup')->name('donor.signup');
+Route::post('/signup', SignUpDonor::class)->name('donor.signup');
 Route::view('/signup', 'components.signup')->name('donor.signup.form');
+Route::post('/confirm', ConfirmSelections::class)->middleware('signup')->name('donor.confirmation');
 
 Route::middleware([
     'auth:sanctum',

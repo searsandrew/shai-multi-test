@@ -24,6 +24,6 @@ class Donation extends Model implements AuditableContract
 
     public function recipient() : \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Recipoent::class);
+        return $this->belongsTo(Recipient::class);
     }
 }

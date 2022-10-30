@@ -21,6 +21,11 @@ class Donor extends Model implements AuditableContract
         return $this->hasMany(Donation::class);
     }
 
+    public function selections()
+    {
+        return $this->donations()->where('status', 'selected')->get();
+    }
+
     public function donationRecipient() : \Illuminate\Database\Eloquent\Relations\HasOneThrough
     {
         return $this->hasOneThrough(Recipient::class, Donation::class);

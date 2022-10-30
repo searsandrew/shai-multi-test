@@ -31,7 +31,6 @@
             </div>
             @if($campaign->toggle_image)
                 <div class="col-span-3">
-                    More shit
                 </div>
             @endif
             <h3 class="col-span-3 text-sm lighter text-slate-600 leading-wide uppercase mb-2">{{ __('Campaign Communication') }}</h3>
