@@ -18,7 +18,7 @@ class UpdateRecipientFromQR
 
     public function handle(Recipient $recipient, Donor $donor)
     {
-        return Donation::create([
+        return Donation::createOrFail([
             'donor_id' => $donor->id,
             'recipient_id' => $recipient->id,
             'selected_at' => Carbon::now()->toDateTimeString()
