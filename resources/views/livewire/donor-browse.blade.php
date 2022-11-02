@@ -10,7 +10,7 @@
                 @break
 
             @case(1003)
-                {{ __('Apologies but I was unable to reserve that Recipient to your gift list and I cannot figure out why. I have logged the error for the administrators to review. If you continue to have issues, please contact the campaign administrator.') }}
+                {{ __('An attempt to create a donation record for you has failed. You have not claimed the recipient. Please contact an administrator for assistance.') }}
                 @break
 
             @default
