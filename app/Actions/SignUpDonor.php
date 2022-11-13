@@ -26,6 +26,6 @@ class SignUpDonor
     {
         $this->handle($request);
         
-        return back();
+        return redirect($request->refUrl);
     }
 }

@@ -16,6 +16,7 @@ class CheckForDonorId
      */
     public function handle(Request $request, Closure $next)
     {
+        // dd(url()->current());
         if(is_null($request->session()->get('donor')))
         {
             return redirect(route('donor.signup.form'));
