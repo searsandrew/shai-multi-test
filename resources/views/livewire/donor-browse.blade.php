@@ -17,7 +17,7 @@
         @endswitch
     </div>
 
-    <div class="divide-y">
+    <div class="divide-y" wire:poll>
         @forelse($donees as $donee)
             <a href="{{ route('recipient.qr', $donee->uuid) }}" class="flex flex-col bg-white hover:bg-orange-50 px-3 py-1">
                 <h3 class="text-lg lighter">{{ $donee->name }}</h3>
@@ -33,7 +33,5 @@
         @empty
             {{ __('There are no remaining recipients in this campaign currently.') }}
         @endforelse
-
-        {{ $donees->links() }}
     </div>
 </div>

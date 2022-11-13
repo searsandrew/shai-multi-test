@@ -18,7 +18,7 @@ class UpdateRecipientFromQR
 
     public function handle(Recipient $recipient, Donor $donor)
     {
-        return Donation::createOrFail([
+        $test = Donation::create([
             'donor_id' => $donor->id,
             'recipient_id' => $recipient->id,
             'selected_at' => Carbon::now()->toDateTimeString()
@@ -34,7 +34,7 @@ class UpdateRecipientFromQR
         {
             return redirect(route('donor.browse', [$recipient->campaign->organization->slug, $recipient->campaign->slug]))->with('notice', 1001);
         }
-
+        
         try {
             $this->handle($recipient, $donor);
         } catch (\Throwable $th) {

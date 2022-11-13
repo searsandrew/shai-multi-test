@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 
 use App\Models\Campaign;
 use App\Models\Organization;
@@ -10,6 +11,8 @@ use App\Models\Recipients;
 
 class DonorBrowse extends Component
 {
+    use WithPagination;
+
     public Campaign $campaign;
     public Organization $organization;
     public mixed $search = false;
@@ -22,7 +25,7 @@ class DonorBrowse extends Component
 
     public function searchDonee($search)
     {
-        return $this->campaign->recipients()->paginate(12);
+        return $this->campaign->availableRecipients();
     }
 
     public function render()

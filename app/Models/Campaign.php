@@ -62,7 +62,7 @@ class Campaign extends Model implements AuditableContract
 
     public function availableRecipients()
     {
-        return $this->recipients()->whereDoesntHave('donations')->get();
+        return $this->recipients()->whereDoesntHave('donation')->get();
     }
 
     public function donations() : \Illuminate\Database\Eloquent\Relations\HasManyThrough

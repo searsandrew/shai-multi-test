@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->bigInteger('donor_id')->unsigned();
             $table->foreign('donor_id')->references('id')->on('donors');
             $table->bigInteger('recipient_id')->unsigned();
