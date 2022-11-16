@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\ImportController;
 use App\Http\Livewire\Campaign\Create as CampaignCreate;
 use App\Http\Livewire\Campaign\Index as CampaignIndex;
@@ -17,6 +19,8 @@ use App\Actions\UpdateRecipientFromQR;
 use App\Actions\SignUpDonor;
 
 use App\Actions\Invokable\SendSelectedEmail;
+
+use App\Models\Donor;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +45,13 @@ Route::get('/{organizationSlug}/{campaignSlug}', DonorBrowse::class)->name('dono
 Route::post('/signup', SignUpDonor::class)->name('donor.signup');
 Route::view('/signup', 'components.signup')->name('donor.signup.form');
 Route::post('/confirm', ConfirmSelections::class)->middleware('signup')->name('donor.confirmation');
+
+Route::get('/logout', function(Request $request) {
+    $donor = Donor::where('uuid', $request->session()->get('donor'))->first();
+    $donor->donations()->where('status', 'selected')->delete();
+    $request->session()->forget('donor');
+    return back();
+})->name('logoff');
 
 Route::middleware([
     'auth:sanctum',
