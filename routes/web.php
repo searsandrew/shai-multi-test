@@ -19,6 +19,7 @@ use App\Actions\UpdateRecipientFromQR;
 use App\Actions\SignUpDonor;
 
 use App\Actions\Invokable\SendSelectedEmail;
+use App\Actions\Invokable\ClearSelectedNotConfirmed;
 
 use App\Models\Donor;
 
@@ -37,6 +38,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', ClearSelectedNotConfirmed::class);
 Route::get('/gomail', SendSelectedEmail::class);
 
 Route::get('/organization', OrganizationSetup::class)->middleware('auth')->name('organization.setup');

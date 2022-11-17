@@ -14,8 +14,8 @@ class SendSelectedEmail
 
         foreach($donations as $donation)
         {
-            // Mail::to($donation->donor->email)->send(new DonorNotified($donation));
-            return (new DonorNotified($donation))->render();
+            Mail::to($donation->donor->email)->send(new DonorNotified($donation));
+            // return (new DonorNotified($donation))->render();
         }
     }
 }
