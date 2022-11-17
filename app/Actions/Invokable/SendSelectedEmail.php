@@ -14,7 +14,10 @@ class SendSelectedEmail
 
         foreach($donations as $donation)
         {
-            $donation->update(['status', 'notified']);
+            $donation->update([
+                'status' => 'notified'
+            ]);
+            
             Mail::to($donation->donor->email)->send(new DonorNotified($donation));
         }
     }
