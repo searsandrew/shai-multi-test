@@ -14,7 +14,7 @@ class Donation extends Model implements AuditableContract
 {
     use Auditable, GeneratesUuid, HasFactory, SoftDeletes;
 
-    protected $fillable = ['donor_id', 'recipient_id', 'selected_at'];
+    protected $fillable = ['donor_id', 'recipient_id', 'selected_at', 'status'];
 
 
     public function donor() : \Illuminate\Database\Eloquent\Relations\BelongsTo

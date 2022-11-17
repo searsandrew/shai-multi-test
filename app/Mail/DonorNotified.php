@@ -49,7 +49,7 @@ class DonorNotified extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.notification',
+            markdown: 'emails.notification',
         );
     }
 
